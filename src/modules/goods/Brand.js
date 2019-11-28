@@ -14,7 +14,7 @@ class Brands extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://192.168.0.3:8080/devicedata/1').then(
+    axios.get('http://localhost:8080/devicedata').then(
       res => {
         this.setState({
           isLoaded: true,
