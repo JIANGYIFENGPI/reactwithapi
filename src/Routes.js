@@ -14,6 +14,7 @@ import Goods from './modules/asideContainer/Goods.js'
 import List from './modules/goods/list.js'
 import Brand from './modules/goods/Brand.js'
 
+
 const routes = [
   {
     path: '/home',

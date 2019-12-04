@@ -1,40 +1,58 @@
-import React, {Component} from 'react'
+import React from 'react';
 
-class List extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {users: []}
-    this.handleClick = this.handleClick.bind(this)
-  }
-  async handleClick() {
-    try {
-      const res = await fetch(
-        'http://localhost:8080/devicedata/'
-      )
-      const users = await res.json()
-      this.setState({users})
-    } catch (error) {
-      console.log('错误', error)
-    }
-  }
+import fetch from 'isomorphic-fetch';
 
-  render() {
-    return (
-      <div>
-        <input
-          type="button"
-          value="点击 async / await 方式获取数据"
-          onClickCapture={this.handleClick}
-        />
-        <ul>
-          {this.state.users &&
-            this.state.users.map((item, index) => (
-              <li key={index.toString()}>{item.name}</li>
-            ))}
-        </ul>
-      </div>
-    )
-  }
+
+class List extends React.Component {
+  constructor(){
+    super();
+    this.state = {
+        lista: [],
+    }}      
+
+componentDidMount(){
+    fetch('http://localhost:8080/devicedata')
+    .then(response => response.json())
+    .then(resData => {
+        this.setState( {data: resData.results});
+    })
+
 }
 
-export default List
+render(){
+  return (
+<div>
+                  <table className="pure-table">
+                        <thead>
+                            <tr>
+                                <th>id</th>
+                                <th>Produto</th>
+                                <th>Quantidade</th>
+                                <th>Quantidade</th>
+                            </tr>
+                        </thead>
+                        <tbody>{
+                                this.state.lista.map(function(data){
+                                return (  
+                                <ul key={data.objectID}>   
+                                    <td>{data.deviceid}></td>
+                                    <td>{data.statusstarttime}</td>
+                                    <td>{data.statusendtime}</td>
+                                    <td>{data.devicestatus}</td>
+                                    
+
+
+                             <td>{data.qntMin}</td>
+                                </ul>
+                                );
+                            })
+                        }
+                        </tbody>
+                    </table>
+ 
+                </div>
+  )
+}
+}
+
+export default List;

@@ -18,20 +18,16 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  
-    "proxy": {
-          "/api/*": {
-            "target": "http://localhost:8080/devicedata/",
-            "secure": false,
-            "changeOrigin": true
-          },
-          "/apiTest/*": {
-            "target": "http://localhost:8080/devicedata/",
-            "secure": false,
-            "changeOrigin": true
-          }
+  "proxy": {
+    "/api/*": {
+      "target": "http://localhost:8080/devicedata/",
+      "secure": false,
+      "changeOrigin": true
+    },
+    "/apiTest/*": {
+      "target": "http://localhost:8080/devicedata/",
+      "secure": false,
+      "changeOrigin": true
     }
+  }
 }
-    
-
-
