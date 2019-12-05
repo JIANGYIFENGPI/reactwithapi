@@ -11,7 +11,8 @@ class List extends React.Component {
     }}      
 
 componentDidMount(){
-    fetch('http://localhost:8080/devicedata')
+    //fetch('http://localhost:8080/devicedata')
+    fetch('/devicedata')
     .then(response => response.json())
     .then(resData => {
         debugger;
