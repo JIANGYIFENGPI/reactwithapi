@@ -4,8 +4,8 @@ import fetch from 'isomorphic-fetch';
 
 
 class List extends React.Component {
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = {
         lista: [],
     }}      
@@ -14,7 +14,9 @@ componentDidMount(){
     fetch('http://localhost:8080/devicedata')
     .then(response => response.json())
     .then(resData => {
-        this.setState( {data: resData.results});
+        debugger;
+        console.log(resData)
+        this.setState( {lista: resData});
     })
 
 }
@@ -25,17 +27,17 @@ render(){
                   <table className="pure-table">
                         <thead>
                             <tr>
-                                <th>id</th>
-                                <th>Produto</th>
-                                <th>Quantidade</th>
-                                <th>Quantidade</th>
+                                <th>device id </th>
+                                <th>start time </th>
+                                <th>send time </th>
+                                <th>device status</th>
                             </tr>
                         </thead>
                         <tbody>{
                                 this.state.lista.map(function(data){
                                 return (  
-                                <ul key={data.objectID}>   
-                                    <td>{data.deviceid}></td>
+                                <tr key={data.objectID}>   
+                                    <td>{data.deviceid}</td>
                                     <td>{data.statusstarttime}</td>
                                     <td>{data.statusendtime}</td>
                                     <td>{data.devicestatus}</td>
@@ -43,7 +45,7 @@ render(){
 
 
                              <td>{data.qntMin}</td>
-                                </ul>
+                                </tr>
                                 );
                             })
                         }
